@@ -1,0 +1,71 @@
+﻿@model IEnumerable<projectPart3.Models.KhachHang>
+
+
+
+@{
+    ViewBag.Title = "list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var khachs = ViewBag.listKhach;
+}
+
+
+
+@if (Session["tenKH"] != null)
+{
+    <h2>list</h2>
+    <li>@Html.ActionLink("Đăng ký", "Register", "Login")</li>
+
+
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Email
+            </th>
+            <th>
+                Tên tài khoản
+            </th>
+            <th></th>
+        </tr>
+
+
+
+        @foreach (var khach in khachs)
+        {
+            int id = (int)Session["idKhachHang"];
+            <tr>
+                <td>
+                    @khach.Email
+                </td>
+                <td>
+                    @khach.UserName
+                </td>
+                <td>
+                    @if (id != khach.ma_khach_hang)
+                    {
+                        <a href="/Login/Delete/@khach.ma_khach_hang">Delete</a>
+
+
+
+                    }
+                    else
+                    {
+                        
+                    }
+
+
+
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}

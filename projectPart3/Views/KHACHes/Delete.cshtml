@@ -1,0 +1,80 @@
+﻿@model projectPart3.Models.KHACH
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <h2>Delete</h2>
+@if (Session["tenKH"] != null)
+{
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>KHACH</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PassWord)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PassWord)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ComfirmPassWord)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ComfirmPassWord)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}

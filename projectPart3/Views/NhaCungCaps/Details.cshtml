@@ -1,0 +1,42 @@
+﻿@model projectPart3.Models.NhaCungCap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["tenKH"] != null)
+{
+    <h2>Details</h2>
+
+    <div>
+        <h4>NhaCungCap</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ten_nha_cung_cap)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ten_nha_cung_cap)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dia_chi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dia_chi)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ma_nha_cung_cap }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<projectPart3.Models.Gia>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["tenKH"] != null)
+{
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Mã giá
+            </th>
+            <th>
+                Giá Gốc
+            </th>
+            <th>
+                Giá khuyến mãi
+            </th>
+            <th>
+                Ngày áp dụng
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ma_gia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gia_goc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gia_khuyen_mai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ngay_ap_dung)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ma_gia }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ma_gia }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ma_gia })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}

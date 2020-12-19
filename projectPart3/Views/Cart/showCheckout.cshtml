@@ -1,0 +1,99 @@
+﻿@model projectPart3.Models.Cart
+@{
+    ViewBag.Title = "showCheckout";
+    Layout = "~/Views/Shared/_LayoutClientShop.cshtml";
+}
+@if (Session["client"] != null)
+{
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            
+            <div class="checkout__form">
+                <h4>Đơn</h4>
+                @using (Html.BeginForm("Checkout", "Cart"))
+                {
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Tên riêng<span>*</span></p>
+                                        <input type="text" value=@Session["firstName"]>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Tên đệm<span>*</span></p>
+                                        <input type="text" value=@Session["lastName"]>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" value=@Session["client"]>
+                                        <input type="hidden" value=@Session["idKhach"]  name="ma_kh">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="checkout__input">
+                                <p>Địa chỉ giao hàng và số điện thoại<span>*</span></p>
+                                <input type="text" placeholder="Nhập địa chỉ và số điện thoại liên lạc" name="ghi_chu">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <label>Chuyển khoản</label>
+                                        <input type="radio" name="trang_thai" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <label>Tiền mặt</label>
+                                        <input type="radio" name="trang_thai" checked value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4>Sản phẩm bạn đặt</h4>
+                                <div class="checkout__order__products">Sản phẩm <span>Tổng</span></div>
+                                <ul>
+                                    @foreach (var item in Model.Items)
+                                    {
+                                        double total = Convert.ToDouble(item._shopping_quantity * item._shopping_product.gias.gia_khuyen_mai);
+                                        <li>@Html.DisplayFor(model => item._shopping_product.ten_sp) <span>@total Đ</span></li>
+                                    }
+                                </ul>
+                                <div class="checkout__order__subtotal">Tổng tiền <span>@Model.total_money() Đ </span></div>
+                                <div class="checkout__order__total">Tiền thanh toán <span>@Model.total_money() Đ </span></div>
+                                
+                                <button type="submit" class="site-btn">ĐẶT HÀNG</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+}
+else
+{
+    <section class="checkout spad">
+        <div class="container">
+            <h1>Bạn cần đăng nhập để đặt hàng</h1>
+            @*<a class="btn btn-success" href="/KHACH/DangNhap">Đăng nhập</a>
+            <a class="btn btn-success" href="/KHACH/DangKy">Đăng ký</a>
+                *@
+        </div>
+    </section>
+    
+}

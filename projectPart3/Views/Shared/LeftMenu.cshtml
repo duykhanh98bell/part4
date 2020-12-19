@@ -1,0 +1,35 @@
+﻿@{
+    var danhmucs = ViewBag.DanhMuc;
+}
+<div class="col-lg-3 col-md-5">
+    <div class="sidebar">
+        <div class="sidebar__item">
+            <h4>Department</h4>
+            <ul>
+                <li><a href="/Home/ShowProduct/">Tất cả</a></li>
+                @foreach (var danhmuc in danhmucs)
+                {
+                    <li><a href="/Home/ShowProduct/@danhmuc.ma_danh_muc">@danhmuc.ten_danh_muc</a></li>
+
+                }
+            </ul>
+        </div>
+        
+        <div class="sidebar__item">
+            <h4>Popular Size</h4>
+            <div class="sidebar__item__size">
+                <label for="large">
+                    @Html.ActionLink("Loc theo gia", "ShowProduct", new { sortOrder = ViewBag.PriceSortParm })
+                </label>
+            </div>
+            <div class="sidebar__item__size">
+                <label for="medium">
+                    @Html.ActionLink("Loc theo ten", "ShowProduct", new { sortOrder = ViewBag.TenSortParm })
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

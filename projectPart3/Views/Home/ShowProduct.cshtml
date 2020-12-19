@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "ShowProduct";
+    Layout = "~/Views/Shared/_LayoutClientShop.cshtml";
+    var products = ViewBag.sanphams;
+    var takes = ViewBag.TakeProduct;
+    var count = ViewBag.countPro;
+}
+
+
+
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("~/Views/Shared/LeftMenu.cshtml")
+            <div class="col-lg-9 col-md-7">
+                <div class="product__discount">
+                    <div class="section-title product__discount__title">
+                        <h2>Sale Off</h2>
+                    </div>
+                    <div class="row">
+                        <div class="product__discount__slider owl-carousel">
+                            @foreach (var take in takes)
+                            {
+                                var url = "Detail/" + take.ma_sp;
+                            <div class="col-lg-4">
+                                    <div class="product__discount__item">
+                                        <div class="product__discount__item__pic set-bg"
+                                             data-setbg="../../@take.hinh_anh">
+                                            @if (take.trang_thai == false)
+                                            {
+                                                <div class="product__discount__percent">Hết</div>
+                                            }
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="/Home/Detail/@take.ma_sp"><i class="fa fa-info"></i></a></li>
+                                                @if (take.trang_thai == true)
+                                                {
+                                                    <li><a href="/Cart/addToCart/@take.ma_sp"><i class="fa fa-shopping-cart"></i></a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div class="product__discount__item__text">
+                                            <span>@take.nhacungcaps.ten_nha_cung_cap</span>
+                                            <h5><a href="/Home/Detail/@take.ma_sp">@take.ten_sp</a></h5>
+                                            <div class="product__item__price">@take.gias.gia_khuyen_mai đ<span>@take.gias.gia_goc đ</span></div>
+                                        </div>
+                                    </div>
+                            </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5">
+
+                            <div class="">
+                                <span>Sắp xếp theo giá</span>
+                                <span class="mount">
+                                @Html.ActionLink("Tăng dần/Giảm dần", "ShowProduct", new { sortOrder = ViewBag.PriceSortParm })
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="filter__found">
+                                <h6><span>@count</span> Sản phẩm tìm được </h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-3">
+                            <div class="filter__option">
+                                <span class="icon_grid-2x2"></span>
+                                <span class="icon_ul"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="../../@item.hinh_anh">
+                                    <ul class="product__item__pic__hover">
+                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li><a href="/Home/Detail/@item.ma_sp"><i class="fa fa-info"></i></a></li>
+                                        @if (item.trang_thai == true)
+                                        {
+                                            <li><a href="/Cart/addToCart/@item.ma_sp"><i class="fa fa-shopping-cart"></i></a></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="/Home/Detail/@item.ma_sp">@item.ten_sp</a></h6>
+                                    <h5>@item.gias.gia_khuyen_mai đ</h5>
+                                </div>
+                            </div>
+                    </div>
+                    }
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->

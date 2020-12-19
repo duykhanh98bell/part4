@@ -1,0 +1,99 @@
+﻿@model projectPart3.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+}
+@if (Session["tenKH"] != null)
+{
+    <h2>Details</h2>
+
+    <div>
+        <h4>SanPham</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.danhmucs.ten_danh_muc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.danhmucs.ten_danh_muc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gias.ma_gia)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gias.ma_gia)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nhacungcaps.ten_nha_cung_cap)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nhacungcaps.ten_nha_cung_cap)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ten_sp)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ten_sp)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.trang_thai)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.trang_thai)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ghi_chu)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ghi_chu)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.xuat_xu)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.xuat_xu)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mo_ta)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mo_ta)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.hinh_anh)
+            </dt>
+
+            <dd>
+                <img src="@Html.DisplayFor(model => model.hinh_anh)" width="250" />
+
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ma_sp }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}
+
+

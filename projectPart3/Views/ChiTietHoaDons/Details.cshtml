@@ -1,0 +1,43 @@
+﻿@model projectPart3.Models.ChiTietHoaDon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiTietHoaDon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hoadons.ghi_chu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoadons.ghi_chu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sanphams.ten_sp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sanphams.ten_sp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.so_luong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_luong)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ma_hd_chi_tiet }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

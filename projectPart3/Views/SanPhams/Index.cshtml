@@ -1,0 +1,118 @@
+﻿@model PagedList.IPagedList<projectPart3.Models.SanPham>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Session["tenKH"] != null)
+{
+    <h2>Index</h2>
+    @ViewBag.Message
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    using (Html.BeginForm())
+    {
+        <p>
+            Tim kiem san pham: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>
+                @Html.ActionLink("Gia", "Index", new { sortOrder = ViewBag.PriceSortParm })
+            </th>
+            <th></th>
+            <th>
+                @Html.ActionLink("Ten", "Index", new { sortOrder = ViewBag.TenSortParm })
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>
+                Tên danh mục
+            </th>
+            <th>
+                GIá khuyến mãi
+            </th>
+            <th>
+                Nhà cung cấp
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Ghi chú
+            </th>
+            <th>
+                Xuất xứ
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.danhmucs.ten_danh_muc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gias.gia_khuyen_mai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nhacungcaps.ten_nha_cung_cap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ten_sp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.trang_thai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ghi_chu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.xuat_xu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mo_ta)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.hinh_anh)" width="50" />
+
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ma_sp }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ma_sp }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ma_sp })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    }
+    else
+    {
+
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}
+

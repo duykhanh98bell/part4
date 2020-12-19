@@ -1,0 +1,98 @@
+﻿@model projectPart3.Models.Cart
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutClientShop.cshtml";
+}
+
+<!-- Shoping Cart Section Begin -->
+@if (Model != null)
+{
+    <section class="shoping-cart spad">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th class="shoping__product">Tên sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    double total = Convert.ToDouble(item._shopping_quantity * item._shopping_product.gias.gia_khuyen_mai);
+                                    <tr>
+                                        <td>
+                                            <img src="@Html.DisplayFor(model => item._shopping_product.hinh_anh)" alt="" width="250">
+
+                                        </td>
+                                        <td>
+                                            <h5>@Html.DisplayFor(model => item._shopping_product.ten_sp)</h5>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            @Html.DisplayFor(model => item._shopping_product.gias.gia_khuyen_mai)
+                                        </td>
+                                        @using (Html.BeginForm("updateCart", "Cart"))
+                                        {
+                                            <td class="shoping__cart__quantity">
+                                                <div class="quantity">
+
+                                                    <div class="">
+                                                        <input type="hidden" name="id_product" value="@Html.DisplayFor(model => item._shopping_product.ma_sp)" />
+                                                        <input type="number" name="quantity" value="@Html.DisplayFor(model => item._shopping_quantity)">
+
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                            <td class="shoping__cart__total">
+                                                @total
+                                            </td>
+                                            <td class="shoping__cart__item__close">
+                                                <input type="submit" name="updateCart" value="Upadate Cart" />
+                                                <a href="/Cart/removeCart/@item._shopping_product.ma_sp"><span class="icon_close"></span></a>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+                
+            <div class="row">
+                <div class="col-lg-6">
+                    
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Tổng tiền hàng</h5>
+                        <ul>
+                            @*<li>Subtotal <span>$454.98</span></li>*@
+                            <li>Tổng <span>@Model.total_money() vnđ</span></li>
+                        </ul>
+                        <a href="/Cart/ShowCheckout" class="primary-btn">Chốt đơn</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+            
+
+
+    </section>
+    <!-- Shoping Cart Section End -->
+}

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<projectPart3.Models.ChiTietHoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var hoadons = ViewBag.Hoadon;
+}
+
+<h2>Index</h2>
+@if (Session["tenKH"] != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Giá gốc
+            </th>
+            <th>
+                Giá phải trả
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>Tổng</th>
+        </tr>
+
+        @foreach (var hoadon in hoadons)
+        {
+    <tr>
+        <td>
+            @hoadon.gia_goc
+        </td>
+        <td>
+            @hoadon.gia_khuyen_mai
+        </td>
+        <td>
+            @hoadon.sanphams.ten_sp
+        </td>
+        <td>
+            @hoadon.so_luong
+        </td>
+        <td>
+            @(hoadon.so_luong * hoadon.gia_khuyen_mai) Đ
+        </td>
+    </tr>
+        }
+
+    </table>
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}

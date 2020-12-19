@@ -1,0 +1,50 @@
+﻿@model projectPart3.Models.Gia
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["tenKH"] != null)
+{
+    <h2>Details</h2>
+
+    <div>
+        <h4>Gia</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.gia_goc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gia_goc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gia_khuyen_mai)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gia_khuyen_mai)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ngay_ap_dung)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ngay_ap_dung)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ma_gia }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}
+

@@ -1,0 +1,34 @@
+﻿@model projectPart3.Models.DanhMuc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["tenKH"] != null)
+{
+    <h2>Details</h2>
+
+    <div>
+        <h4>DanhMuc</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ten_danh_muc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ten_danh_muc)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ma_danh_muc }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}
+

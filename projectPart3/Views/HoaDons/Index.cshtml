@@ -1,0 +1,84 @@
+﻿@model PagedList.IPagedList<projectPart3.Models.HoaDon>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@if (Session["tenKH"] != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Tên
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th>
+                Phương thức thanh toán
+            </th>
+            <th>
+                Địa chỉ giao hàng
+            </th>
+            <th>
+                Ngày tạo đơn
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.khachs.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tong_tien) đ
+                </td>
+                @if (item.trang_thai == 1)
+                {
+                    <td>
+                        Tiền mặt
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Chuyển khoản
+                    </td>
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ghi_chu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ngay_tao)
+                </td>
+                <td>
+                    <a href="/ChiTietHoaDons/Index/@item.ma_hd">Xem chi tiet</a>
+                    <a href="/KHACHes/Details/@item.ma_kh">Xem khách </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-kg-6 col-xs-6 col-sm-6">
+            @using (Html.BeginForm("Index", "HoaDons", FormMethod.Get))
+            {
+                <p>
+                    Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+                </p>
+            }
+        </div>
+    </div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize }))
+}
+else
+{
+    <li>@Html.ActionLink("Đăng nhập", "Login", "Login")</li>
+}

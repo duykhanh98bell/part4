@@ -1,0 +1,48 @@
+﻿@model IEnumerable<projectPart3.Models.NhaCungCap>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["tenKH"] != null)
+{
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Tên nhà cung cấp
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ten_nha_cung_cap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dia_chi)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ma_nha_cung_cap }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ma_nha_cung_cap }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ma_nha_cung_cap })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
+}
+

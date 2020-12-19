@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
 @if (Session["tenKH"] != null)
 {
@@ -80,5 +79,5 @@
 }
 else
 {
-    <li>@Html.ActionLink("Đăng nhập", "Login", "Login")</li>
+<h1>Bạn cần đăng nhập để tiếp tục</h1>
 }

@@ -137,6 +137,7 @@ namespace projectPart3.Controllers
             ViewBag.ma_danh_muc = new SelectList(db.danhmucs, "ma_danh_muc", "ten_danh_muc", sanPham.ma_danh_muc);
             ViewBag.ma_gia = new SelectList(db.gias, "ma_gia", "ma_gia", sanPham.ma_gia);
             ViewBag.ma_ncc = new SelectList(db.nhacungcaps, "ma_nha_cung_cap", "ten_nha_cung_cap", sanPham.ma_ncc);
+            ViewBag.SP = db.gias.ToList();
             return View(sanPham);
         }
 
